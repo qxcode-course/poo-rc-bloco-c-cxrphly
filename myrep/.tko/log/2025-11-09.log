@@ -1,0 +1,21 @@
+2025-11-09 11:21:28, MOVE, v:1, k:poo@array, mode:PICK
+2025-11-09 11:38:34, MOVE, v:1, k:poo@array, mode:PICK
+2025-11-09 11:38:39, EXEC, v:1, k:poo@array, mode:FREE, size:0
+2025-11-09 11:45:07, EXEC, v:1, k:poo@array, mode:FREE
+2025-11-09 11:51:15, MOVE, v:1, k:poo@array, mode:BACK
+2025-11-09 11:51:30, MOVE, v:1, k:poo@array, mode:PICK
+2025-11-09 11:51:38, EXEC, v:1, k:poo@array, mode:FREE, size:61
+2025-11-09 11:52:45, MOVE, v:1, k:poo@array, mode:PICK
+2025-11-09 11:52:45, EXEC, v:1, k:poo@array, mode:FREE
+2025-11-09 12:53:29, MOVE, v:1, k:poo@array, mode:BACK
+2025-11-09 12:53:31, MOVE, v:1, k:poo@budega, mode:DOWN
+2025-11-09 12:53:32, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-09 13:25:02, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-09 13:25:04, EXEC, v:1, k:poo@budega, mode:FREE, size:54
+2025-11-09 13:27:49, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-09 13:27:50, EXEC, v:1, k:poo@budega, mode:FREE, size:59
+2025-11-09 13:29:06, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-09 13:29:07, EXEC, v:1, k:poo@budega, mode:FREE, size:59
+2025-11-09 13:49:55, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-09 13:49:56, EXEC, v:1, k:poo@budega, mode:FREE, size:55
+2025-11-09 13:54:41, MOVE, v:1, k:poo@budega, mode:BACK

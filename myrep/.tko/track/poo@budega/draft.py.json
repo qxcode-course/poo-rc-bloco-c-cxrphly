@@ -1,0 +1,24 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-09_13-25-04",
+            "content": "@@ -349,89 +349,8 @@\n %5B%5D%0A%0A\n-%0A    def add_person(self, person:Person):%0A        self.__waiting.append(person)%0A%0A\n     \n@@ -538,24 +538,103 @@\n pop(0)%0A    %0A\n+    def add_person(self, person:Person):%0A        self.__waiting.append(person)%0A\n     def fini\n@@ -774,17 +774,16 @@\n  = None%0A\n-%0A\n     def \n@@ -1148,13 +1148,33 @@\n lit(\n-%22 %22\n+)%0A    market = Market(\n )%0A\n+%0A\n     \n@@ -1614,69 +1614,4 @@\n eak%0A\n-        else:%0A            print(%22fail: comando invalido%22)%0A%0Amain()\n",
+            "lines": "54"
+        },
+        {
+            "label": "2025-11-09_13-27-50",
+            "content": "@@ -1088,28 +1088,8 @@\n ():%0A\n-    while True:%0A    \n     \n@@ -1103,28 +1103,24 @@\n input()%0A    \n-  \n-  \n print(%22$%22 + \n@@ -1125,20 +1125,16 @@\n + line)%0A\n-    \n     args\n@@ -1152,16 +1152,32 @@\n it(%22 %22)%0A\n+    while True:%0A\n         \n",
+            "lines": "59"
+        },
+        {
+            "label": "2025-11-09_13-29-07",
+            "content": "@@ -812,64 +812,47 @@\n     \n-counters_str = %5Bstr(Person) if Person else %22-----%22\n+result = %22Counters:%5Cn%22%0A       \n  for \n-P\n+i, p\n erso\n@@ -852,24 +852,34 @@\n , person in \n+enumerate(\n self.__count\n@@ -881,17 +881,18 @@\n counters\n-%5D\n+):\n %0A       \n@@ -896,40 +896,99 @@\n     \n-waiting_str = %5Bstr(Person)\n+    result += f%22 Counter %7Bi%7D: %7Bperson%7D%5Cn%22%0A        result += %22Waiting Line:%5Cn%22%0A       \n  for \n-P\n+p\n erso\n@@ -1010,18 +1010,20 @@\n ting\n-%5D%0A\n+:%0A  \n         \n retu\n@@ -1022,67 +1022,61 @@\n     \n-return f%22Counters: %7Bcounters_str%7D%5CnWaiting: %7Bwaiting_str%7D%22%0A\n+  result += f%22 %7Bperson%7D%5Cn%22%0A        return result%0A    \n %0Adef\n",
+            "lines": "59"
+        },
+        {
+            "label": "2025-11-09_13-49-56",
+            "content": "class Person:\n    def __init__(self):\n        self.__name = \"John Doe\"\n\n    def get_name(self):\n        return self.__name\n    \n    def __str__(self):\n        return self.__name\n    \nclass Market:\n    def __init__(self, qtd_counters:int):\n        self.__counters:list[Person|None] = [None]*qtd_counters\n        self.__waiting:list[Person | None] = []\n\n\n    def add_person(self, person:Person):\n        self.__waiting.append(person)\n\n    def call_next(self):\n        for i in range(len(self.__counters)):\n            if self.__counters[i] is None and self.__waiting:\n                self.__counters[i] = self.__waiting.pop(0)\n    \n    def finish_service(self, counter_index:int):\n        if 0 <= counter_index < len(self.__counters):\n            self.__counters[counter_index] = None\n\n    def __str__(self):\n        counters_str = [str(Person) if Person else \"-----\" for Person in self.__counters]\n        waiting_str = [str(Person) for Person in self.__waiting]\n        return f\"Counters: {counters_str}\\nWaiting: {waiting_str}\"\n\ndef main():\n    while True:\n        line = input()\n        print(\"$\" + line)\n        args = line.split(\" \")\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        elif args[0] == \"show\":\n            print(market)\n        elif args[0] == \"enter\":\n            person = Person()\n            market.add_person(person)\n        elif args[0] == \"call\":\n            market.call_next()\n        elif args[0] == \"finish\":\n            market.finish_service(int(args[1]))\n        elif args[0] == \"end\":\n            break\n        else:\n            print(\"fail: comando invalido\")\n\nmain()",
+            "lines": "55"
+        }
+    ]
+}
