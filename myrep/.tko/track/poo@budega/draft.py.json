@@ -17,8 +17,103 @@
         },
         {
             "label": "2025-11-09_13-49-56",
-            "content": "class Person:\n    def __init__(self):\n        self.__name = \"John Doe\"\n\n    def get_name(self):\n        return self.__name\n    \n    def __str__(self):\n        return self.__name\n    \nclass Market:\n    def __init__(self, qtd_counters:int):\n        self.__counters:list[Person|None] = [None]*qtd_counters\n        self.__waiting:list[Person | None] = []\n\n\n    def add_person(self, person:Person):\n        self.__waiting.append(person)\n\n    def call_next(self):\n        for i in range(len(self.__counters)):\n            if self.__counters[i] is None and self.__waiting:\n                self.__counters[i] = self.__waiting.pop(0)\n    \n    def finish_service(self, counter_index:int):\n        if 0 <= counter_index < len(self.__counters):\n            self.__counters[counter_index] = None\n\n    def __str__(self):\n        counters_str = [str(Person) if Person else \"-----\" for Person in self.__counters]\n        waiting_str = [str(Person) for Person in self.__waiting]\n        return f\"Counters: {counters_str}\\nWaiting: {waiting_str}\"\n\ndef main():\n    while True:\n        line = input()\n        print(\"$\" + line)\n        args = line.split(\" \")\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        elif args[0] == \"show\":\n            print(market)\n        elif args[0] == \"enter\":\n            person = Person()\n            market.add_person(person)\n        elif args[0] == \"call\":\n            market.call_next()\n        elif args[0] == \"finish\":\n            market.finish_service(int(args[1]))\n        elif args[0] == \"end\":\n            break\n        else:\n            print(\"fail: comando invalido\")\n\nmain()",
+            "content": "@@ -32,18 +32,8 @@\n self\n-, name:str\n ):%0A \n@@ -53,20 +53,26 @@\n _name = \n-name\n+%22John Doe%22\n %0A%0A    de\n@@ -1326,20 +1326,8 @@\n son(\n-str(args%5B1%5D)\n )%0A  \n@@ -1364,19 +1364,8 @@\n rson\n-.get_name()\n )%0A  \n",
             "lines": "55"
+        },
+        {
+            "label": "2025-11-10_07-51-26",
+            "content": "@@ -981,20 +981,18 @@\n  f%22C\n-aixas: %7Bstr(\n+ounters: %7B\n coun\n@@ -1003,25 +1003,21 @@\n _str\n-)\n %7D%5Cn\n-Espera: %7Bstr(\n+Waiting: %7B\n wait\n@@ -1023,17 +1023,16 @@\n ting_str\n-)\n %7D%22%0A%0Adef \n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-10_07-52-52",
+            "content": "@@ -831,29 +831,30 @@\n r = \n-%22, %22.join(str(p) if p\n+%5Bstr(Person) if Person\n  els\n@@ -867,17 +867,22 @@\n --%22 for \n-p\n+Person\n  in self\n@@ -892,17 +892,17 @@\n counters\n-)\n+%5D\n %0A       \n@@ -920,26 +920,34 @@\n r = \n-%22, %22.join(map(str,\n+%5Bstr(Person) for Person in\n  sel\n@@ -957,18 +957,17 @@\n _waiting\n-))\n+%5D\n %0A       \n@@ -984,18 +984,21 @@\n Caixas: \n-%5B\n %7B\n+str(\n counters\n@@ -1001,18 +1001,18 @@\n ters_str\n+)\n %7D\n-%5D\n %5CnEspera\n@@ -1017,10 +1017,13 @@\n ra: \n-%5B\n %7B\n+str(\n wait\n@@ -1033,10 +1033,10 @@\n _str\n+)\n %7D\n-%5D\n %22%0A%0Ad\n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-10_07-58-03",
+            "content": "@@ -1282,14 +1282,13 @@\n == %22\n-arrive\n+enter\n %22:%0A \n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-10_07-58-55",
+            "content": "@@ -924,41 +924,16 @@\n oin(\n-str(p) if p else %22-----%22 for p in\n+map(str,\n  sel\n@@ -944,16 +944,17 @@\n waiting)\n+)\n %0A       \n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-10_08-01-35",
+            "content": "@@ -808,17 +808,8 @@\n f):%0A\n-        %0A\n     \n@@ -841,30 +841,19 @@\n oin(\n-%5B\n str(\n-Person) if Person\n+p) if p\n  els\n@@ -862,30 +862,25 @@\n %22-----%22 for \n-Person\n+p\n  in self.__c\n@@ -886,17 +886,16 @@\n counters\n-%5D\n )%0A      \n@@ -924,31 +924,38 @@\n oin(\n-%5B\n str(\n-Person) for Person\n+p) if p else %22-----%22 for p\n  in \n@@ -968,17 +968,16 @@\n _waiting\n-%5D\n )%0A      \n@@ -1023,20 +1023,16 @@\n pera: %5B%7B\n-str(\n waiting_\n@@ -1034,17 +1034,16 @@\n ting_str\n-)\n %7D%5D%22%0A%0Adef\n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-10_08-07-54",
+            "content": "@@ -600,20 +600,37 @@\n rs%5Bi%5D = \n-None\n+self.__waiting.pop(0)\n %0A    %0A  \n",
+            "lines": "56"
+        },
+        {
+            "label": "2025-11-10_08-09-04",
+            "content": "@@ -604,29 +604,12 @@\n %5D = \n-self.__waiting.pop(0)\n+None\n %0A   \n",
+            "lines": "56"
+        },
+        {
+            "label": "2025-11-11_10-06-51",
+            "content": "@@ -796,32 +796,41 @@\n  __str__(self):%0A\n+        %0A\n         counters\n",
+            "lines": "56"
+        },
+        {
+            "label": "2025-11-11_10-08-45",
+            "content": "@@ -456,27 +456,11 @@\n self\n-, index:int ):%0A    \n+):%0A\n     \n@@ -513,20 +513,16 @@\n         \n-    \n if self.\n@@ -542,22 +542,37 @@\n  is None\n-:%0A    \n+ and self.__waiting:%0A\n         \n@@ -623,40 +623,10 @@\n pop(\n-index)%0A                    break\n+0)\n %0A   \n@@ -1479,28 +1479,16 @@\n ll_next(\n-int(args%5B1%5D)\n )%0A      \n",
+            "lines": "55"
+        },
+        {
+            "label": "2025-11-11_10-19-21",
+            "content": "@@ -665,74 +665,8 @@\n     \n-            else:%0A                    print(%22fail: caixa ocupado%22)\n %0A   \n",
+            "lines": "56"
+        },
+        {
+            "label": "2025-11-12_08-08-18",
+            "content": "@@ -479,24 +479,27 @@\n     \n-if 0 %3C= index %3C \n+    for i in range(\n len(\n@@ -506,32 +506,33 @@\n self.__counters)\n+)\n :%0A            if\n@@ -529,16 +529,20 @@\n         \n+ \n+   \n if self.\n@@ -553,20 +553,16 @@\n unters%5Bi\n-ndex\n %5D is Non\n@@ -584,67 +584,30 @@\n     \n+ \n-if len(self.__waiting) %3E 0:%0A                    next_person\n+   self.__counters%5Bi%5D\n  = s\n@@ -624,17 +624,21 @@\n ing.pop(\n-0\n+index\n )%0A      \n@@ -655,44 +655,13 @@\n     \n-self.__counters%5Bindex%5D = next_person\n+break\n %0A   \n@@ -716,153 +716,23 @@\n il: \n-nao ha pessoas na fila%22)%0A            else:%0A                print(%22fail: caixa ocupado%22)%0A        else:%0A            print(%22fail: caixa invalido%22)%0A%0A\n+caixa ocupado%22)\n %0A   \n",
+            "lines": "57"
+        },
+        {
+            "label": "2025-11-12_08-12-34",
+            "content": "@@ -776,20 +776,30 @@\n il: \n-sem clientes\n+nao ha pessoas na fila\n %22)%0A \n",
+            "lines": "64"
+        },
+        {
+            "label": "2025-11-12_08-12-59",
+            "content": "@@ -1015,244 +1015,8 @@\n s):%0A\n-            if self.__counters%5Bcounter_index%5D is None:%0A                print(%22fail: caixa vazio%22)%0A            elif counter_index not in range(len(self.__counters)):%0A                print(%22fail: caixa inexistente%22)%0A            else:%0A    \n     \n",
+            "lines": "64"
+        },
+        {
+            "label": "2025-11-12_08-16-06",
+            "content": "@@ -990,10 +990,8 @@\n ndex\n-+1\n  %3C l\n",
+            "lines": "69"
+        },
+        {
+            "label": "2025-11-12_08-18-06",
+            "content": "@@ -982,24 +982,26 @@\n ounter_index\n++1\n  %3C len(self.\n",
+            "lines": "69"
+        },
+        {
+            "label": "2025-11-12_10-35-03",
+            "content": "@@ -1157,10 +1157,8 @@\n nge(\n-0,\n len(\n",
+            "lines": "69"
+        },
+        {
+            "label": "2025-11-12_10-36-23",
+            "content": "@@ -338,15 +338,22 @@\n rson\n+ %7C None\n %5D = %5B%5D%0A\n-\n %0A%0A  \n@@ -1105,24 +1105,142 @@\n ixa vazio%22)%0A\n+            elif counter_index not in range(0,len(self.__counters)):%0A                print(%22fail: caixa inexistente%22)%0A\n             \n@@ -1302,64 +1302,8 @@\n None\n-%0A        else:%0A            print(%22fail: caixa invalido%22)\n %0A%0A  \n@@ -1880,32 +1880,32 @@\n n(str(args%5B1%5D))%0A\n-\n             mark\n@@ -1924,16 +1924,27 @@\n n(person\n+.get_name()\n )%0A      \n",
+            "lines": "69"
+        },
+        {
+            "label": "2025-11-12_10-40-43",
+            "content": "@@ -1225,17 +1225,14 @@\n a in\n-existente\n+valido\n %22)%0A%0A\n",
+            "lines": "69"
+        },
+        {
+            "label": "2025-11-12_10-41-27",
+            "content": "class Person:\n    def __init__(self, name:str):\n        self.__name = name\n\n    def get_name(self):\n        return self.__name\n    \n    def __str__(self):\n        return self.__name\n    \nclass Market:\n    def __init__(self, qtd_counters:int):\n        self.__counters:list[Person|None] = [None]*qtd_counters\n        self.__waiting:list[Person] = []\n\n\n    def add_person(self, person:Person):\n        self.__waiting.append(person)\n\n    def call_next(self, index:int ):\n        if 0 <= index < len(self.__counters):\n            if self.__counters[index] is None:\n                if len(self.__waiting) > 0:\n                    next_person = self.__waiting.pop(0)\n                    self.__counters[index] = next_person\n                else:\n                    print(\"fail: sem clientes\")\n            else:\n                print(\"fail: caixa ocupado\")\n        else:\n            print(\"fail: caixa invalido\")\n\n\n    def finish_service(self, counter_index:int):\n        if 0 <= counter_index < len(self.__counters):\n            if self.__counters[counter_index] is None:\n                print(\"fail: caixa vazio\")\n            else:\n                self.__counters[counter_index] = None\n        else:\n            print(\"fail: caixa inexistente\")\n\n    def __str__(self):\n        counters_str = \", \".join([str(Person) if Person else \"-----\" for Person in self.__counters])\n        waiting_str = \", \".join([str(Person) for Person in self.__waiting])\n        return f\"Caixas: [{counters_str}]\\nEspera: [{str(waiting_str)}]\"\n\ndef main():\n    while True:\n        line = input()\n        print(\"$\" + line)\n        args = line.split(\" \")\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        elif args[0] == \"show\":\n            print(market)\n        elif args[0] == \"arrive\":\n            person = Person(str(args[1]))\n            market.add_person(person)\n        elif args[0] == \"call\":\n            market.call_next(int(args[1]))\n        elif args[0] == \"finish\":\n            market.finish_service(int(args[1]))\n        elif args[0] == \"end\":\n            break\n        else:\n            print(\"fail: comando invalido\")\n\nmain()",
+            "lines": "69"
         }
     ]
 }
