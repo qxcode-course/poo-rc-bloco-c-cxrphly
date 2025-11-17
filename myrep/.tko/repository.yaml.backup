@@ -22,6 +22,7 @@ expanded:
 - poo@bloco_f-herança-i
 tasks:
   poo@budega: '{rate:100}'
+  poo@lapiseira: '{rate:100}'
   poo@pula-pula: '{rate:100}'
   poo@cinema: '{rate:100, human:amigo_de_DD, other:Forum}'
   poo@tabuleiro: '{rate:100}'
@@ -33,4 +34,4 @@ flags:
   graph: 1
   xray: 0
 lang: py
-selected: poo@lapiseira
+selected: poo@bloco_c-listas

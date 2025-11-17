@@ -6,10 +6,8 @@ class Lead:
 
     def usagePerPage(self):
         usage = {"HB" : 1, "2B" : 2, "4B" : 4, "6B" : 6}
-        for tip in usage:
-            if self.__hardness == tip:
-                return usage[tip]
-        return 0
+        return usage.get(self.__hardness, 0)
+        
     
     def getThickness(self):
         return self.__thickness
@@ -37,8 +35,7 @@ class Pencil:
         if tip.getThickness() != self.__thickness:
             print("fail: calibre incompatível")
             return
-        else:
-            self.__barrel.append(tip)
+        self.__barrel.append(tip)
     def removeLead(self):
         if self.__tip is None:
             print("fail: nao existe grafite")
@@ -48,18 +45,31 @@ class Pencil:
 
     def pullLead(self):
         if self.__tip is not None:
-            print("fail: ja existe grafite")
+            print("fail: ja existe grafite no bico")
             return
         if len(self.__barrel) == 0:
-            print("fail: nao ha grafite no estojo")
+            print("fail: nao ha grafite no tambor")
             return
         else:
             self.__tip = self.__barrel.pop(0)
 
     def writePage(self):
+        if self.__tip is None:
+            print("fail: nao existe grafite no bico")
+            return
+        usage = self.__tip.usagePerPage()
+        size = self.__tip.getSize()
+        if size <= 10:
+            print("fail: tamanho insuficiente")
+            return
+        if size - usage < 10:
+            print("fail: folha incompleta")
+            self.__tip.setSize(10)
+            return
+        self.__tip.setSize(size - usage)
+    
 
-        self.__tip.setSize(self.__tip.getSize() - self.__tip.usagePerPage())
-        
+
     def __str__(self):
         tip_str = "[]" if self.__tip is None else "["+str(self.__tip)+"]"
         barrel_str = "<"+"".join("["+str(lead)+"]" for lead in self.__barrel) + ">"
