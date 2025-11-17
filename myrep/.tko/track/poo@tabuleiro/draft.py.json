@@ -1,0 +1,104 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-16_20-58-08",
+            "content": "@@ -236,32 +236,4 @@\n     \n-%0A    def get_position(self):\n",
+            "lines": "12"
+        },
+        {
+            "label": "2025-11-16_20-59-30",
+            "content": "@@ -264,151 +264,4 @@\n lf):\n-%0A        return self.position%0A    %0A%0A    def set_position(self, position:int):%0A        self.position = position%0A    def set_livre(self, livre:bool):\n",
+            "lines": "13"
+        },
+        {
+            "label": "2025-11-16_21-01-18",
+            "content": "@@ -411,99 +411,4 @@\n ol):\n-%0A        self.livre = livre%0A%0A%0A    def __str__(self):%0A        return f%22player %7Bself.label%7D%22%0A    \n",
+            "lines": "19"
+        },
+        {
+            "label": "2025-11-16_21-02-41",
+            "content": "@@ -506,116 +506,4 @@\n     \n-%0A%0Aclass Tabuleiro:%0A    def __init__(self, num_players:int, board_size:int):%0A        self.board_size = board_sixe\n",
+            "lines": "25"
+        },
+        {
+            "label": "2025-11-16_21-04-22",
+            "content": "@@ -616,158 +616,6 @@\n d_si\n-ze%0A        self.armadilhas:list%5Bint%5D = %5B%5D%0A        self.players:list%5BPlayer%5D = %5BPlayer(i +1)for i in range(num_players)%5D%0A%0A        self.current = 0%0A        \n+xe\n",
+            "lines": "29"
+        },
+        {
+            "label": "2025-11-16_21-09-42",
+            "content": "@@ -591,18 +591,16 @@\n    self.\n-__\n board_si\n@@ -620,34 +620,32 @@\n ze%0A        self.\n-__\n armadilhas:list%5B\n@@ -667,18 +667,16 @@\n    self.\n-__\n players:\n@@ -736,42 +736,8 @@\n s)%5D%0A\n-        self.__running:bool = True\n %0A   \n@@ -750,21 +750,15 @@\n elf.\n-__\n current\n-:int\n  = 0\n@@ -770,118 +770,4 @@\n     \n-self.__over:bool= False%0A    def add_armadilha(self, position:int):%0A        self.__armadilhas.append(position)%0A    \n",
+            "lines": "34"
+        },
+        {
+            "label": "2025-11-16_21-14-29",
+            "content": "@@ -925,372 +925,8 @@\n ion)\n-%0A%0A    def dado(self, value:int):%0A        if self.__over:%0A            print(%22game over%22)%0A            return%0A        player = self.__players%5Bself.__current%5D%0A%0A        if not player.is_livre():%0A            if value %25 2 == 0:%0A                player.set_livre(True)%0A                print(f%22%7Bplayer%7D liberado%22)%0A            else;%0A                print(f%22%7Bplayer%7D preso%22)%0A%0A\n %0A   \n",
+            "lines": "37"
+        },
+        {
+            "label": "2025-11-16_21-19-30",
+            "content": "@@ -1241,17 +1241,17 @@\n     else\n-:\n+;\n %0A       \n@@ -1288,60 +1288,8 @@\n o%22)%0A\n-            self.__next_player()%0A            return%0A\n %0A%0A  \n",
+            "lines": "52"
+        },
+        {
+            "label": "2025-11-16_21-22-59",
+            "content": "@@ -1340,518 +1340,8 @@\n urn%0A\n-        %0A%0A        new_position = player.get_position() + value%0A        if new_position %3E self.__board_size:%0A            player.set_position(self.__board_size)%0A            print(f%22%7Bplayer%7D venceu!%22)%0A            self.__over = True%0A            return%0A        %0A        player.set_position(new_position)%0A        print(f%22%7Bplayer%7D andou para %7Bplayer.get_position()%7D%22)%0A%0A        if new_position in self.__armadilhas:%0A            player.ser_livre(False)%0A            print(f%22%7Bplayer%7Dcaiu em uma armadilha%22)%0A%0A            %0A\n %0A%0A  \n",
+            "lines": "54"
+        },
+        {
+            "label": "2025-11-16_21-30-50",
+            "content": "@@ -1761,25 +1761,25 @@\n    player.se\n-t\n+r\n _livre(False\n@@ -1845,1142 +1845,15 @@\n     \n-self.__next_player()%0A%0A    def __next_player(self):%0A        self.__current = (self.__current + 1) %25 len(self.__players)%0A    %0A    def __str__(self):%0A        lines = %5B%5D%0A        size = self.__board_size%0A%0A        for player in self.__players:%0A            lines.append(f%22%7Bplayer%7D: %7Bplayer.get_position()%7D%22)%0A        %0A        traps = %22, %22.join(str(pos) for pos in self.__armadilhas)%0A        for trap in self.__armadilhas:%0A            lines.append(f%22Armadilha em: %7Btrap%7D%22)%0A%0A        return %22%5Cn%22.join(lines)%0A    %0Adef main():%0A    while True:%0A        line = input()%0A        args = line.split(%22 %22)%0A        cmd = args%5B0%5D%0A        if cmd == %22end%22:%0A            break%0A        elif cmd == %22init%22:%0A            num_players = int(args%5B1%5D)%0A            board_size = int(args%5B2%5D)%0A            tabuleiro = Tabuleiro(num_players, board_size)%0A        elif cmd == %22armadilha%22:%0A            position = int(args%5B1%5D)%0A            tabuleiro.add_armadilha(position)%0A        elif cmd == %22dado%22:%0A            value = int(args%5B1%5D)%0A            tabuleiro.dado(value)%0A        elif cmd == %22show%22:%0A            print(tabuleiro)%0A        else:%0A            print(%22comando invalido%22)%0Amain()\n+    %0A%0A%0A    \n",
+            "lines": "71"
+        },
+        {
+            "label": "2025-11-16_21-43-21",
+            "content": "@@ -1,3011 +1,561 @@\n-class Player:%0A    def __init__(self, label:int):%0A        self.label = label%0A        self.position = 0%0A        self.livre = True%0A%0A    def is_livre(self):%0A        return self.livre%0A    %0A    def get_label(self):%0A        return self.label%0A    %0A    def get_position(self):%0A        return self.position%0A    %0A%0A    def set_position(self, position:int):%0A        self.position = position%0A    def set_livre(self, livre:bool):%0A        self.livre = livre%0A%0A%0A    def __str__(self):%0A        return f%22player %7Bself.label%7D%22%0A    %0A%0Aclass Tabuleiro:%0A    def __init__(self, num_players:int, board_size:int):%0A        self.__board_size = board_size%0A        self.__armadilhas:list%5Bint%5D = %5B%5D%0A        self.__players:list%5BPlayer%5D = %5BPlayer(i +1)for i in range(num_players)%5D%0A        self.__current:int = 0%0A        self.__over:bool= False%0A    def add_armadilha(self, position:int):%0A        self.__armadilhas.append(position)%0A%0A    def rollDice(self, value:int):%0A        if self.__over:%0A            print(%22game over%22)%0A            return%0A        player = self.__players%5Bself.__current%5D%0A%0A        if not player.is_livre():%0A            if value %25 2 == 0:%0A                player.set_livre(True)%0A                print(f%22%7Bplayer%7D se libertou%22)%0A            else:%0A                print(f%22%7Bplayer%7D cootinua preso%22)%0A            self.__next_player()%0A            return%0A        %0A%0A        new_position = player.get_position() + value%0A        if new_position %3E self.__board_size:%0A            player.set_position(self.__board_size)%0A            print(f%22%7Bplayer%7D ganhou!%22)%0A            self.__over = True%0A            return%0A        %0A        player.set_position(new_position)%0A        print(f%22%7Bplayer%7D andou para %7Bplayer.get_position()%7D%22)%0A%0A        if new_position in self.__armadilhas:%0A            player.set_livre(False)%0A            print(f%22%7Bplayer%7Dcaiu em uma armadilha%22)%0A%0A        self.__next_player()%0A%0A    def __next_player(self):%0A        self.__current = (self.__current + 1) %25 len(self.__players)%0A    %0A    def __str__(self):%0A        lines = %5B%5D%0A        size = self.__board_size + 1%0A%0A        for player in self.__players:%0A            row = %5B%22.%22 for _ in range(size)%5D%0A            row%5Bplayer.get_position()%5D = str(player.get_label())%0A            lines.append(%22%22.join(row))%0A        %0A        armadilhas_row = %5B%22.%22 for _ in range(size)%5D%0A%0A        for trap in self.__armadilhas:%0A            armadilhas_row%5Btrap%5D = %22x%22%0A        lines.append(f%22traps__: %7B''.join(armadilhas_row)%7D%22)%0A    %0A        return %22%5Cn%22.join(lines)%0A    %0Adef main():%0A    tabuleiro = None%0A    while True:%0A        line = input()%0A        args = line.split(%22 %22)%0A        print(%22$%22 + line)%0A        cmd = args%5B0%5D%0A        if cmd == %22end%22:%0A            break%0A        elif cmd == %22init%22:%0A            tabuleiro = Tabuleiro(int(args%5B1%5D), int(args%5B2%5D))%0A        elif cmd == %22addTrap%22:%0A            tabuleiro.add_armadilha(int(args%5B1%5D))%0A        elif cmd == %22roll%22:%0A            tabuleiro.dado(int(args%5B1%5D))%0A        elif cmd == %22show%22:%0A            print(tabuleiro)%0A        else:%0A            print(%22comando invalido%22)%0Amain()\n+@@ -738,16 +738,51 @@%0A ayers)%255D%250A%0A+        self.__running:bool = True%250A%0A         %0A@@ -935,16 +935,12 @@%0A def %0A-rollDice%0A+dado%0A (sel%0A@@ -1217,20 +1217,17 @@%0A yer%257D%0A- se%0A  liber%0A-tou%0A+ado%0A %2522)%250A %0A@@ -1279,17 +1279,8 @@%0A yer%257D%0A- cootinua%0A  pre%0A@@ -1528,13 +1528,13 @@%0A er%257D %0A-ganho%0A+vence%0A u!%2522)%0A@@ -2095,143 +2095,57 @@%0A     %0A-row = %255B%2522.%2522 for _ in range(size)%255D%250A            row%255Bplayer.get_position()%255D = str(player.get_label())%250A            lines.append(%2522%2522.join(row)%0A+lines.append(f%2522%257Bplayer%257D: %257Bplayer.get_position()%257D%2522%0A )%250A  %0A\n",
+            "lines": "30"
+        },
+        {
+            "label": "2025-11-16_21-55-55",
+            "content": "@@ -2203,41 +2203,10 @@\n end(\n-f%22player%7Bplayer.get_label()%7D: %7B''\n+%22%22\n .joi\n@@ -2207,26 +2207,24 @@\n %22%22.join(row)\n-%7D%22\n )%0A        %0A \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_21-57-30",
+            "content": "@@ -892,110 +892,8 @@\n n)%0A%0A\n-    def __next_player(self):%0A        self.__current = (self.__current + 1) %25 len(self.__players)%0A    %0A\n     \n@@ -915,32 +915,32 @@\n lf, value:int):%0A\n+\n         if self.\n@@ -1250,17 +1250,17 @@\n ayer%7D co\n-n\n+o\n tinua pr\n@@ -1844,16 +1844,118 @@\n ayer()%0A%0A\n+    def __next_player(self):%0A        self.__current = (self.__current + 1) %25 len(self.__players)%0A    %0A\n     def \n@@ -2903,24 +2903,20 @@\n buleiro.\n-rollDice\n+dado\n (int(arg\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-01-03",
+            "content": "@@ -1738,32 +1738,15 @@\n t(f%22\n+%7B\n player\n-%5D%7Bplayer.get_label\n %7D an\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-01-57",
+            "content": "@@ -1732,32 +1732,33 @@\n   print(f%22player\n+%5D\n %7Bplayer.get_labe\n@@ -1758,18 +1758,16 @@\n et_label\n-()\n %7D andou \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-02-14",
+            "content": "@@ -1905,35 +1905,16 @@\n t(f%22\n-player\n %7Bplayer\n-.get_label()%7D \n+%7D\n caiu\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-02-40",
+            "content": "@@ -1280,33 +1280,15 @@\n t(f%22\n-player\n %7Bplayer\n-.get_label()\n %7D se\n@@ -1345,33 +1345,15 @@\n t(f%22\n-player\n %7Bplayer\n-.get_label()\n %7D co\n@@ -1602,33 +1602,15 @@\n t(f%22\n-player\n %7Bplayer\n-.get_label()\n %7D ga\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-03-26",
+            "content": "@@ -1667,16 +1667,17 @@\n %7D ganhou\n+!\n %22)%0A     \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-03-49",
+            "content": "@@ -1077,11 +1077,8 @@\n ame \n-is \n over\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-16_22-04-25",
+            "content": "class Player:\n    def __init__(self, label:int):\n        self.label = label\n        self.position = 0\n        self.livre = True\n\n    def is_livre(self):\n        return self.livre\n    \n    def get_label(self):\n        return self.label\n    \n    def get_position(self):\n        return self.position\n    \n\n    def set_position(self, position:int):\n        self.position = position\n    def set_livre(self, livre:bool):\n        self.livre = livre\n\n\n    def __str__(self):\n        return f\"player {self.label}\"\n    \n\nclass Tabuleiro:\n    def __init__(self, num_players:int, board_size:int):\n        self.__board_size = board_size\n        self.__armadilhas:list[int] = []\n        self.__players:list[Player] = [Player(i +1)for i in range(num_players)]\n        self.__current:int = 0\n        self.__over:bool= False\n    def add_armadilha(self, position:int):\n        self.__armadilhas.append(position)\n\n    def __next_player(self):\n        self.__current = (self.__current + 1) % len(self.__players)\n    \n    def rollDice(self, value:int):\n        if self.__over:\n            print(\"game is over\")\n            return\n        player = self.__players[self.__current]\n\n        if not player.is_livre():\n            if value % 2 == 0:\n                player.set_livre(True)\n                print(f\"player{player.get_label()} se libertou\")\n            else:\n                print(f\"player{player.get_label()} continua preso\")\n            self.__next_player()\n            return\n        \n\n        new_position = player.get_position() + value\n        if new_position > self.__board_size:\n            player.set_position(self.__board_size)\n            print(f\"player{player.get_label()} ganhou\")\n            self.__over = True\n            return\n        \n        player.set_position(new_position)\n        print(f\"player{player.get_label()} andou para {player.get_position()}\")\n\n        if new_position in self.__armadilhas:\n            player.set_livre(False)\n            print(f\"player{player.get_label()} caiu em uma armadilha\")\n\n        self.__next_player()\n\n    def __str__(self):\n        lines = []\n        size = self.__board_size + 1\n\n        for player in self.__players:\n            row = [\".\" for _ in range(size)]\n            row[player.get_position()] = str(player.get_label())\n            lines.append(f\"player{player.get_label()}: {''.join(row)}\")\n        \n        armadilhas_row = [\".\" for _ in range(size)]\n\n        for trap in self.__armadilhas:\n            armadilhas_row[trap] = \"x\"\n        lines.append(f\"traps__: {''.join(armadilhas_row)}\")\n    \n        return \"\\n\".join(lines)\n    \ndef main():\n    tabuleiro = None\n    while True:\n        line = input()\n        args = line.split(\" \")\n        print(\"$\" + line)\n        cmd = args[0]\n        if cmd == \"end\":\n            break\n        elif cmd == \"init\":\n            tabuleiro = Tabuleiro(int(args[1]), int(args[2]))\n        elif cmd == \"addTrap\":\n            tabuleiro.add_armadilha(int(args[1]))\n        elif cmd == \"roll\":\n            tabuleiro.rollDice(int(args[1]))\n        elif cmd == \"show\":\n            print(tabuleiro)\n        else:\n            print(\"comando invalido\")\nmain()",
+            "lines": "108"
+        }
+    ]
+}

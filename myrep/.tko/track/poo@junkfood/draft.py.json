@@ -1,0 +1,104 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-16_22-14-58",
+            "content": "@@ -1,655 +0,0 @@\n-class Slot:%0A    def __init__(self, name:str = %22empty%22, qtd:int = 0, price:float = 0.0):%0A        self.name = name%0A        self.qtd = qtd%0A        self.price = price%0A    %0A    def get_name(self) -%3E str:%0A        return self.name%0A    def get_qtd(self) -%3E int:%0A        return self.qtd%0A    def get_price(self) -%3E float:%0A        return self.price%0A    %0A    def set_name(self, name:str) -%3E None:%0A        self.name = name%0A    def set_qtd(self, qtd:int) -%3E None:%0A        self.qtd = qtd%0A    def set_price(self, price:float) -%3E None:%0A        self.price = price%0A%0A    def __str__(self) -%3E str:%0A        return f%22%5B %7Bself.name:7%7D : %7Bself.qtd%7D U : $%7Bself.price:.2f%7D RS %5D%22%0A    \n",
+            "lines": "0"
+        },
+        {
+            "label": "2025-11-16_22-18-51",
+            "content": "@@ -652,2571 +652,4 @@\n     \n-%0Aclass Machine:%0A    def __init__(self, capacity:int = 0):%0A        self.slots = %5BSlot() for _ in range(capacity)%5D%0A        self.cash = 0.0%0A        self.capacity = capacity%0A%0A    def get_slots(self, index:int) -%3E list:%0A        if 0 %3C= index %3C self.capacity:%0A            return self.slots%5Bindex%5D%0A        print(%22fail:indice nao existe%22)%0A%0A        return None%0A    %0A    def set_slots(self, index:int, name:str, qtd:int, price:float):%0A        if not (0 %3C= index %3C self.capacity):%0A            print(%22fail:indice nao existe%22)%0A            return%0A        slot = self.slots%5Bindex%5D%0A        slot.set_name(name)%0A        slot.set_qtd(qtd)%0A        slot.set_price(price)%0A%0A    def clear(self, index:int):%0A        if not (0 %3C= index %3C self.capacity):%0A            print(%22fail:indice nao existe%22)%0A            return%0A        %0A        self.slots%5Bindex%5D = Slot()%0A%0A    def insert_cash(self, amount:float):%0A        if amount %3C= 0:%0A            print(%22fail:valor invalido%22)%0A            return%0A        self.cash += amount%0A%0A    def buy(self, index:int):%0A        if not (0 %3C= index %3C self.capacity):%0A            print(%22fail:indice nao existe%22)%0A            return%0A        %0A        slot = self.slots%5Bindex%5D%0A        if slot.get_name() == %22empty%22:%0A            print(%22fail:slot vazio%22)%0A            return%0A        %0A        if slot.get_qtd() == 0:%0A            print(%22fail:espiral sem produtos%22)%0A            return%0A        %0A        if self.cash %3C slot.get_price():%0A            print(%22fail:saldo insuficiente%22)%0A            return%0A        slot.set_qtd(slot.get_qtd() - 1)%0A        self.cash -= slot.get_price()%0A%0A        print(f%22voce comprou um %7Bslot.get_name()%7D%22)%0A%0A    def __str__(self) -%3E str:%0A        lines = %5B%5D%0A        lines.append(f%22saldo: $%7Bself.cash:.2f%7D RS%22)%0A        for i, slot in enumerate(self.slots):%0A            lines.append(f%22%7Bi%7D: %7Bslot%7D%22)%0A        return %22%5Cn%22.join(lines)%0A    %0Adef main():%0A    machine: Machine = Machine()%0A    while True:%0A        line = input()%0A        args = line.split()%0A        print(f%22$%7Bline%7D%22)%0A        if args%5B0%5D == %22end%22:%0A            break%0A        elif args%5B0%5D == %22init%22:%0A            machine = Machine(int(args%5B1%5D))%0A        elif args%5B0%5D == %22show%22:%0A            print(machine)%0A        elif args%5B0%5D == %22set%22:%0A            machine.set_slots(int(args%5B1%5D), args%5B2%5D, int(args%5B3%5D), float(args%5B4%5D))%0A        elif args%5B0%5D == %22clear%22:%0A            machine.clear(int(args%5B1%5D))%0A        elif args%5B0%5D == %22insert%22:%0A            machine.insert_cash(float(args%5B1%5D))%0A        elif args%5B0%5D == %22buy%22:%0A            machine.buy(int(args%5B1%5D))%0A        else:%0A            print(%22fail:comando invalido%22)%0A%0Amain()%0A\n",
+            "lines": "23"
+        },
+        {
+            "label": "2025-11-16_22-33-39",
+            "content": "@@ -640,16 +640,17 @@\n :.2f%7D RS\n+ \n %5D%22%0A    %0A\n@@ -2346,16 +2346,17 @@\n %22saldo: \n+$\n %7Bself.ca\n@@ -2362,16 +2362,19 @@\n ash:.2f%7D\n+ RS\n %22)%0A     \n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-34-58",
+            "content": "@@ -588,18 +588,16 @@\n turn f%22%5B\n-  \n  %7Bself.n\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-35-37",
+            "content": "@@ -2441,16 +2441,17 @@\n nd(f%22%7Bi%7D\n+:\n  %7Bslot%7D%22\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-37-46",
+            "content": "@@ -604,16 +604,17 @@\n .name:7%7D\n+ \n : %7Bself.\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-38-32",
+            "content": "@@ -590,16 +590,17 @@\n rn f%22%5B  \n+ \n %7Bself.na\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-38-40",
+            "content": "@@ -590,17 +590,16 @@\n rn f%22%5B  \n- \n %7Bself.na\n@@ -605,11 +605,10 @@\n ame:\n-5%7D \n+7%7D\n : %7Bs\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-39-32",
+            "content": "@@ -622,16 +622,17 @@\n td%7D U : \n+$\n %7Bself.pr\n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-40-43",
+            "content": "@@ -574,45 +574,8 @@\n tr:%0A\n-        if self.name == %22empty%22:%0A    \n     \n@@ -588,17 +588,16 @@\n turn f%22%5B\n-%5D\n    %7Bself\n@@ -620,102 +620,8 @@\n .qtd\n-:2%7D U : %7Bself.price:.2f%7D RS%5D%22%0A        else:%0A            return f%22%5B %7Bself.name:7%7D : %7Bself.qtd:2\n %7D U \n",
+            "lines": "111"
+        },
+        {
+            "label": "2025-11-16_22-43-29",
+            "content": "@@ -625,16 +625,17 @@\n turn f%22%5B\n+%5D\n    %7Bself\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-43-40",
+            "content": "@@ -627,16 +627,17 @@\n rn f%22%5B  \n+ \n %7Bself.na\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-43-52",
+            "content": "@@ -627,17 +627,16 @@\n rn f%22%5B  \n- \n %7Bself.na\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-44-06",
+            "content": "@@ -645,32 +645,34 @@\n e:5%7D : %7Bself.qtd\n+:2\n %7D U : %7Bself.pric\n@@ -745,16 +745,18 @@\n self.qtd\n+:2\n %7D U : %7Bs\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-45-09",
+            "content": "@@ -3077,12 +3077,11 @@\n == %22\n-limp\n+cle\n ar%22:\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-45-35",
+            "content": "@@ -1078,33 +1078,32 @@\n     print(%22fail:\n- \n indice nao exist\n@@ -1106,16 +1106,16 @@\n xiste%22)%0A\n+\n %0A       \n@@ -1261,33 +1261,32 @@\n     print(%22fail:\n- \n indice nao exist\n@@ -1519,33 +1519,32 @@\n     print(%22fail:\n- \n indice nao exist\n@@ -1700,17 +1700,16 @@\n t(%22fail:\n- \n valor in\n@@ -1864,17 +1864,16 @@\n t(%22fail:\n- \n indice n\n@@ -2008,17 +2008,16 @@\n t(%22fail:\n- \n slot vaz\n@@ -2105,17 +2105,16 @@\n t(%22fail:\n- \n espiral \n@@ -2193,24 +2193,24 @@\n et_price():%0A\n+\n             \n@@ -2221,17 +2221,16 @@\n t(%22fail:\n- \n saldo in\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-46-46",
+            "content": "@@ -3159,16 +3159,14 @@\n == %22\n-d\n in\n-heiro\n+sert\n %22:%0A \n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-48-21",
+            "content": "@@ -2406,220 +2406,8 @@\n %22)%0A%0A\n-    def exchange_cash(self) -%3E float:%0A        if self.cash == 0:%0A            print(%22fail: sem saldo%22)%0A            return%0A        %0A        print(f%22voce recebeu %7Bself.cash:.2f%7D RS%22)%0A        self.cash = 0%0A        %0A%0A\n     \n@@ -3218,77 +3218,8 @@\n %5D))%0A\n-        elif args%5B0%5D == %22troco%22:%0A            machine.exchange_cash()%0A\n     \n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-16_22-51-59",
+            "content": "@@ -3524,15 +3524,11 @@\n == %22\n-comprar\n+buy\n %22:%0A \n",
+            "lines": "125"
+        },
+        {
+            "label": "2025-11-16_22-52-44",
+            "content": "class Slot:\n    def __init__(self, name:str = \"empty\", qtd:int = 0, price:float = 0.0):\n        self.name = name\n        self.qtd = qtd\n        self.price = price\n    \n    def get_name(self) -> str:\n        return self.name\n    def get_qtd(self) -> int:\n        return self.qtd\n    def get_price(self) -> float:\n        return self.price\n    \n    def set_name(self, name:str) -> None:\n        self.name = name\n    def set_qtd(self, qtd:int) -> None:\n        self.qtd = qtd\n    def set_price(self, price:float) -> None:\n        self.price = price\n\n    def __str__(self) -> str:\n        if self.name == \"empty\":\n            return f\"[   {self.name:5} : {self.qtd} U : {self.price:.2f} RS]\"\n        else:\n            return f\"[ {self.name:7} : {self.qtd} U : {self.price:.2f} RS]\"\n    \nclass Machine:\n    def __init__(self, capacity:int = 0):\n        self.slots = [Slot() for _ in range(capacity)]\n        self.cash = 0.0\n        self.capacity = capacity\n\n    def get_slots(self, index:int) -> list:\n        if 0 <= index < self.capacity:\n            return self.slots[index]\n        print(\"fail: indice nao existe\")\n\n        return None\n    \n    def set_slots(self, index:int, name:str, qtd:int, price:float):\n        if not (0 <= index < self.capacity):\n            print(\"fail: indice nao existe\")\n            return\n        slot = self.slots[index]\n        slot.set_name(name)\n        slot.set_qtd(qtd)\n        slot.set_price(price)\n\n    def clear(self, index:int):\n        if not (0 <= index < self.capacity):\n            print(\"fail: indice nao existe\")\n            return\n        \n        self.slots[index] = Slot()\n\n    def insert_cash(self, amount:float):\n        if amount <= 0:\n            print(\"fail: valor invalido\")\n            return\n        self.cash += amount\n\n    def buy(self, index:int):\n        if not (0 <= index < self.capacity):\n            print(\"fail: indice nao existe\")\n            return\n        \n        slot = self.slots[index]\n        if slot.get_name() == \"empty\":\n            print(\"fail: slot vazio\")\n            return\n        \n        if slot.get_qtd() == 0:\n            print(\"fail: espiral sem produtos\")\n            return\n        \n        if self.cash < slot.get_price():\n            print(\"fail: saldo insuficiente\")\n            return\n        slot.set_qtd(slot.get_qtd() - 1)\n        self.cash -= slot.get_price()\n\n        print(f\"voce comprou um {slot.get_name()}\")\n\n    def exchange_cash(self) -> float:\n        if self.cash == 0:\n            print(\"fail: sem saldo\")\n            return\n        \n        print(f\"voce recebeu {self.cash:.2f} RS\")\n        self.cash = 0\n        \n\n    def __str__(self) -> str:\n        lines = []\n        lines.append(f\"saldo: {self.cash:.2f}\")\n        for i, slot in enumerate(self.slots):\n            lines.append(f\"{i} {slot}\")\n        return \"\\n\".join(lines)\n    \ndef main():\n    machine: Machine = Machine()\n    while True:\n        line = input()\n        args = line.split()\n        print(f\"${line}\")\n        if args[0] == \"end\":\n            break\n        elif args[0] == \"init\":\n            machine = Machine(int(args[1]))\n        elif args[0] == \"show\":\n            print(machine)\n        elif args[0] == \"set\":\n            machine.set_slots(int(args[1]), args[2], int(args[3]), float(args[4]))\n        elif args[0] == \"limpar\":\n            machine.clear(int(args[1]))\n        elif args[0] == \"dinheiro\":\n            machine.insert_cash(float(args[1]))\n        elif args[0] == \"troco\":\n            machine.exchange_cash()\n        elif args[0] == \"comprar\":\n            machine.buy(int(args[1]))\n        else:\n            print(\"fail:comando invalido\")\n\nmain()\n",
+            "lines": "125"
+        }
+    ]
+}
